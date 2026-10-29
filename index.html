@@ -1,0 +1,338 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClinicCare - Clinic Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span>✚</span>
+                <h2>ClinicCare</h2>
+            </div>
+
+            <p class="menu-title">MAIN MENU</p>
+
+            <nav>
+                <a href="#" class="nav-link active" data-page="dashboard">
+                    <span>▦</span> Dashboard
+                </a>
+
+                <a href="#" class="nav-link" data-page="patients">
+                    <span>♙</span> Patients
+                </a>
+
+                <a href="#" class="nav-link" data-page="appointments">
+                    <span>▣</span> Appointments
+                </a>
+
+                <a href="#" class="nav-link" data-page="doctors">
+                    <span>⚕</span> Doctors
+                </a>
+
+                <a href="#" class="nav-link" data-page="billing">
+                    <span>＄</span> Billing
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <p>ClinicCare System</p>
+                <small>Version 1.0</small>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div>
+                    <h1 id="page-title">Dashboard</h1>
+                    <p>Welcome back! Here's your clinic overview.</p>
+                </div>
+
+                <div class="topbar-actions">
+                    <button id="theme-toggle" class="theme-button">
+                        🌙
+                    </button>
+
+                    <div class="user-profile">
+                        <div class="avatar">A</div>
+                        <div>
+                            <strong>Admin</strong>
+                            <small>Administrator</small>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Page -->
+            <section class="page active" id="dashboard">
+
+                <div class="welcome-card">
+                    <div>
+                        <h2>Welcome to ClinicCare 👋</h2>
+                        <p>Manage your clinic easily from one place.</p>
+                    </div>
+
+                    <button class="primary-button" id="add-patient-shortcut">
+                        + Add Patient
+                    </button>
+                </div>
+
+                <!-- Statistics -->
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue">♙</div>
+                        <p>Total Patients</p>
+                        <h2 id="total-patients">0</h2>
+                        <small>Registered patients</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">▣</div>
+                        <p>Appointments</p>
+                        <h2 id="total-appointments">0</h2>
+                        <small>Scheduled appointments</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">⚕</div>
+                        <p>Doctors</p>
+                        <h2 id="total-doctors">0</h2>
+                        <small>Available doctors</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange">$</div>
+                        <p>Total Revenue</p>
+                        <h2 id="total-revenue">0 EGP</h2>
+                        <small>Recorded payments</small>
+                    </div>
+
+                </div>
+
+                <!-- Recent Appointments -->
+                <div class="content-card">
+                    <div class="section-heading">
+                        <div>
+                            <h2>Recent Appointments</h2>
+                            <p>Overview of scheduled appointments</p>
+                        </div>
+
+                        <button class="secondary-button" data-go="appointments">
+                            View All
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="recent-appointments"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Patients Page -->
+            <section class="page" id="patients">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Patients Management</h2>
+                        <p>Manage your clinic patients.</p>
+                    </div>
+
+                    <button class="primary-button" id="add-patient-button">
+                        + Add Patient
+                    </button>
+                </div>
+
+                <div class="content-card">
+
+                    <div class="search-box">
+                        <input
+                            type="text"
+                            id="patient-search"
+                            placeholder="Search by patient name or phone..."
+                        >
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Phone</th>
+                                    <th>Gender</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="patients-table"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Appointments Page -->
+            <section class="page" id="appointments">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Appointments Management</h2>
+                        <p>Schedule and manage patient appointments.</p>
+                    </div>
+
+                    <button class="primary-button" id="add-appointment-button">
+                        + Add Appointment
+                    </button>
+                </div>
+
+                <div class="content-card">
+
+                    <div class="search-box">
+                        <input
+                            type="text"
+                            id="appointment-search"
+                            placeholder="Search by patient or doctor..."
+                        >
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="appointments-table"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Doctors Page -->
+            <section class="page" id="doctors">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Doctors Management</h2>
+                        <p>View the clinic's medical team.</p>
+                    </div>
+                </div>
+
+                <div class="doctors-grid" id="doctors-list"></div>
+
+            </section>
+
+            <!-- Billing Page -->
+            <section class="page" id="billing">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Billing Management</h2>
+                        <p>Track payments and clinic revenue.</p>
+                    </div>
+
+                    <button class="primary-button" id="add-bill-button">
+                        + Add Payment
+                    </button>
+                </div>
+
+                <div class="content-card">
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Patient</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="billing-table"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+
+        <div class="modal">
+
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Record</h2>
+
+                <button id="close-modal" class="close-button">
+                    &times;
+                </button>
+            </div>
+
+            <form id="modal-form">
+                <div id="modal-fields"></div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancel-modal" class="secondary-button">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Save
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+ 
